@@ -6,9 +6,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Recipe {
     String name;
     String description;
-    String ingredients;
-    String directions;
+    String[] ingredients;
+    String[] directions;
 }
