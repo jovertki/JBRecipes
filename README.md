@@ -8,6 +8,7 @@
 - REST API
 - CRUD
 - H2 database
+- SQL
 - Project Lombok
 
 ### JSON рецепта
