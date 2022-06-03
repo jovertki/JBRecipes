@@ -10,29 +10,21 @@
 #### POST /api/recipe/new
 
 Принимает на вход JSON рецепта в формате
-
+```
 {
-
     "name": "recipe name",
-  
     "description": "recipe description",
-  
     "category": "recipe category",
-  
     "directions": ["direction 1", "direction 2", ...],
-  
     "ingredients": ["ingredient 1", "ingredient 2", .,.]
-  
 }
-
+```
 и возвращает 
-
+```
 {
-
     "id": "integer id"
-
 }
-
+```
 #### GET /api/recipe/{id}
 
 Возвращает в формате JSON рецепт по id с полем "date" с датой последнего обновления
