@@ -1,17 +1,16 @@
 # Recipes
 
-## Описание
-Вебсервис для хранения рецептов на Spring Boot, Spring Data
+Вебсервис для хранения рецептов
 
-В качестве базы данных используется H2
+## Использованные технологии
+- Spring Boot
+- Spring Data
+- REST API
+- CRUD
+- H2
+- Project Lombok
 
-Для сокращения boilerplate кода использован Project Lombok
-
-### Входные точки:
-
-#### POST /api/recipe/new
-
-Принимает на вход JSON рецепта в формате
+### JSON рецепта
 ```
 {
     "name": "recipe name",
@@ -21,26 +20,20 @@
     "ingredients": ["ingredient 1", "ingredient 2", .,.]
 }
 ```
-и возвращает 
-```
-{
-    "id": "integer id"
-}
-```
-#### GET /api/recipe/{id}
+### Входные точки:
 
-Возвращает в формате JSON рецепт по id с полем "date" с датой последнего обновления
+```POST /api/recipe/new```      Добавляет описанный в JSON рецепт, возвращает id
 
-#### DELETE /api/recipe/{id}
+```GET /api/recipe/{id}```      Возвращает в формате JSON рецепт по id с полем "date" с датой последнего обновления
 
-Удаляет рецепт по id из базы данных
+```DELETE /api/recipe/{id}```   Удаляет рецепт по id из базы данных
 
-#### PUT /api/recipe/{id}
+```PUT /api/recipe/{id}```      Принимает на вход JSON и обновляет рецепт по id
 
-Принимает на вход JSON и обновляет рецепт по id
+```GET /api/recipe/search```       Возвращает рецепты, в зависимости от параметра:
 
-#### GET /api/recipe/search
+* ```name=someName```           возвращает рецепты, которые содержат в названии значение параметра, case insensitive
+* ```category=categoryName```   возвращает рецепты заданной категории case insensitive
 
-При передаче параметра name возвращает все рецепты, которые содержат в названии значение параметра, case insensitive
-
-При передаче параметра category возвращает все рецепты переданной категории
+## TODO
+* Добавить авторизацию через Spring Security
