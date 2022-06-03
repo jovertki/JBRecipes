@@ -7,19 +7,19 @@
 - Spring Data
 - REST API
 - CRUD
-- H2
+- H2 database
 - Project Lombok
 
 ### JSON рецепта
-```
-{
-    "name": "recipe name",
-    "description": "recipe description",
-    "category": "recipe category",
-    "directions": ["direction 1", "direction 2", ...],
-    "ingredients": ["ingredient 1", "ingredient 2", .,.]
-}
-```
+
+|Поле       |Тип     |Описание                     |
+|-----------|--------|-----------------------------|
+|    name   | String |Название                     |
+|description| String |Описание                     |
+|  category | String |Категория, например "напиток"|
+| directions|String[]|Приготовление по шагам       |
+|ingredients|String[]|Необходимые ингредиенты      |
+
 ### Входные точки:
 
 ```POST /api/recipe/new```      Добавляет описанный в JSON рецепт, возвращает id
