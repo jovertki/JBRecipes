@@ -16,5 +16,5 @@ public interface RecipeRepository extends CrudRepository<Recipe, Long> {
             "where lower(category) LIKE :category " +
             "order by date DESC ", nativeQuery = true)
     List<Recipe> findAllByCategory(@Param("category") String category);
-
 }
+
