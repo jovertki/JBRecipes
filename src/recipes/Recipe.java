@@ -2,7 +2,6 @@ package recipes;
 
 import com.fasterxml.jackson.annotation.*;
 import lombok.*;
-
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -10,8 +9,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.*;
-
-
 
 
 @Entity
@@ -35,7 +32,6 @@ class Category {
     public void removeRecipe(Recipe r){
         recipesInCategory.remove(r);
     }
-
     public Category( String s) {
         category = s;
     }
@@ -56,15 +52,6 @@ public class Recipe {
     @NotBlank
     private String name;
 
-    public void update(Recipe r){
-        name = r.name;
-        date = LocalDateTime.now();
-        description = r.description;
-        ingredients = r.ingredients;
-        directions = r.directions;
-    }
-
-
     @NotNull
     @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "category")
@@ -73,18 +60,9 @@ public class Recipe {
     private Category  category;
 
     @JsonIgnore
-    public String getCategoryString(){
-        return category.getCategory();
-    }
-
-    @Getter
-    private LocalDateTime date;
-
-    @PreUpdate
-    @PrePersist
-    public void updateDate(){
-        date = LocalDateTime.now();
-    }
+    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "owner")
+    private User owner;
 
     @NotBlank
     @Column(name = "description")
@@ -99,6 +77,28 @@ public class Recipe {
     @CollectionTable(name = "directions", joinColumns = @JoinColumn(name = "recipe_id"))
     @Size(min = 1)
     private List<String> directions = new ArrayList<>();
+
+    @Getter
+    private LocalDateTime date;
+
+    public void update(Recipe r){
+        name = r.name;
+        date = LocalDateTime.now();
+        description = r.description;
+        ingredients = r.ingredients;
+        directions = r.directions;
+    }
+
+    @JsonIgnore
+    public String getCategoryString(){
+        return category.getCategory();
+    }
+
+    @PreUpdate
+    @PrePersist
+    public void updateDate(){
+        date = LocalDateTime.now();
+    }
 
 
 
